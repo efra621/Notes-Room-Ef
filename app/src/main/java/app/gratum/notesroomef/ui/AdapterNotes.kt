@@ -7,19 +7,27 @@ import androidx.recyclerview.widget.RecyclerView
 import app.gratum.notesroomef.R
 import app.gratum.notesroomef.data.model.NotesEf
 import app.gratum.notesroomef.databinding.ItemNotesBinding
+import app.gratum.notesroomef.tools.OnItemClick
 
-class AdapterNotes(private val list: List<NotesEf>) : RecyclerView.Adapter<AdapterNotes.ViewHolder>() {
+class AdapterNotes(
+    private val list: List<NotesEf>,
+    private val listener: OnItemClick?
+) : RecyclerView.Adapter<AdapterNotes.ViewHolder>() {
 
     private var notes = emptyList<NotesEf>()
-    var OnItemClick : ((NotesEf) -> Unit)? = null
+    var onItemClick : ((NotesEf) -> Unit)? = null
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = ItemNotesBinding.bind(itemView)
 
-        fun render(notesEf: NotesEf){
+        fun render(notesEf: NotesEf, listener: OnItemClick?){
             binding.tvTitle.text = notesEf.noteTitle
             binding.tvDescription.text = notesEf.noteDescription
+
+            binding.imvDelete.setOnClickListener{
+                listener?.onDeleteClick(notesEf)
+            }
         }
     }
 
@@ -35,11 +43,11 @@ class AdapterNotes(private val list: List<NotesEf>) : RecyclerView.Adapter<Adapt
 
         val currentItem = notes[position]
 
-        holder.render(list[position])
+        holder.render(list[position], listener)
 
-//        holder.binding.ivDeleteDojo.setOnClickListener {
-//            listener?.onDeleteClick(list[position])
-//        }
+        holder.itemView.setOnClickListener {
+            listener?.setOnItemClickListener(currentItem)
+        }
 
     }
 
