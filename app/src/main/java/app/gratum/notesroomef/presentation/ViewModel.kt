@@ -17,9 +17,10 @@ class ViewModel(application: Application): AndroidViewModel(application) {
 
     init {
         val dao = DatabaseNotesEf.getDatabase(application).dao()
+
         repository = RepositoryNotesEf(dao)
 
-        readAllNotes = repository.readAllNotes
+        readAllNotes = repository.readAllNotesRepo
     }
 
     fun addData(notes: NotesEf){

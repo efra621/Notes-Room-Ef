@@ -10,7 +10,7 @@ class RepositoryNotesEf (private val daoNotes: NotesEfDao){
         daoNotes.addData(notes)
     }
 
-    val readAllNotes: LiveData<List<NotesEf>> = daoNotes.readAllNotes()
+    val readAllNotesRepo: LiveData<List<NotesEf>> = daoNotes.readAllNotes()
 
     suspend fun updateData(notes: NotesEf){
         daoNotes.updateNote(notes)
