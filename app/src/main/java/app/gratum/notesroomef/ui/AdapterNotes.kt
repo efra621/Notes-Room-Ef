@@ -15,7 +15,6 @@ class AdapterNotes(
 ) : RecyclerView.Adapter<AdapterNotes.ViewHolder>() {
 
     private var notes = emptyList<NotesEf>()
-    var onItemClick : ((NotesEf) -> Unit)? = null
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -43,7 +42,7 @@ class AdapterNotes(
 
         val currentItem = notes[position]
 
-        holder.render(list[position], listener)
+        holder.render(currentItem, listener)
 
         holder.itemView.setOnClickListener {
             listener?.setOnItemClickListener(currentItem)

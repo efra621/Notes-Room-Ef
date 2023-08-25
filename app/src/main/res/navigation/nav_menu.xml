@@ -19,10 +19,13 @@
         android:id="@+id/listFragment"
         android:name="app.gratum.notesroomef.ui.fragment.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <argument
+            android:name="SaludoFragment1"
+            app:argType="string" />
     </fragment>
 
 

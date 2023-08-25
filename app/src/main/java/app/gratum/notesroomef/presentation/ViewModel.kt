@@ -1,6 +1,7 @@
 package app.gratum.notesroomef.presentation
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,7 @@ import app.gratum.notesroomef.repository.RepositoryNotesEf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ViewModel(application: Application): AndroidViewModel(application) {
+open class ViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository : RepositoryNotesEf
     val readAllNotes: LiveData<List<NotesEf>>
